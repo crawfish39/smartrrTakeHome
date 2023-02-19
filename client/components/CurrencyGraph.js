@@ -25,7 +25,7 @@ export default function CurrencyGraph ({historicalData,setHistoricalData,setUser
     const dates = historicalDates(userInput)
 
     dates.forEach(async el => {
-        // const retroData = await parseHistoricalAPI(el);
+        const retroData = await parseHistoricalAPI(el);
         setHistoricalData((historicalData) => [...historicalData,retroData])
       });
     setUserInput(1);

@@ -8,6 +8,7 @@ export default function UserForm ({setUserInput,userInput,handleSubmit}){
       <label>Days:<input
         type="number"
         min={1}
+        max={30}
         name="days" 
         onChange={(e) => setUserInput(e.target.value)}
         value={userInput}/>
