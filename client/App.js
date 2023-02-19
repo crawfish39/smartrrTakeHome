@@ -112,7 +112,7 @@ export default function App(){
         + today.getSeconds() + " ET";
         return [currentTime,dateStamp];
       }
-    // 2023-02-19 17:49:47 ET,2023-2-19
+
     useEffect(() => {
         // populate state immediately when page loads
         const asyncHelper = async () => {
