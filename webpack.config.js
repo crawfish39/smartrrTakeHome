@@ -5,13 +5,16 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
-    entry: './client/index.js',
+    entry: './client/index.tsx',
     output: {
         filename: 'bundle.js',
         path: `${__dirname}/dist`,
         publicPath: '/'
     },
-    devtool:'eval-source-map',
+    devtool:'inline-source-map',
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"],
+      },
     devServer: {
         host: 'localhost',
         port: '3000',
@@ -25,11 +28,19 @@ export default {
     },
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
+            { 
+                test: /\.(t|j)sx?$/, 
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: "ts-loader"
+                }
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "source-map-loader",
                 }
             },
         ]

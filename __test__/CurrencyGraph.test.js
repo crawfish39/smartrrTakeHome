@@ -9,7 +9,7 @@ jest.mock('react-chartjs-2', () => (
     Line: () => null 
   }))
 
-  jest.mock('../client/components/UserForm.js');
+jest.mock('../client/components/UserForm.js');
 
 describe('CurrencyGraph', () => {
   
@@ -35,8 +35,6 @@ describe('CurrencyGraph', () => {
 
     it('UserForm mock should have been called', () => {
       expect(UserForm).toHaveBeenCalled()
-    })
-
-    
+    })    
   })
 })

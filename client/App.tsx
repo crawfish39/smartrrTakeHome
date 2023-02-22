@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import { parseConverterAPI } from './api/converter.js'
-import CurrencyGraph from "./components/CurrencyGraph.js";
+import CurrencyGraph from "./components/CurrencyGraph";
 import CurrencyTable from "./components/CurrencyTable.js";
+import { ExchangeData } from '../@types/types'
 
 // const testData = [
 //     {
@@ -92,22 +94,22 @@ import CurrencyTable from "./components/CurrencyTable.js";
 // }
 // ]
 
-export default function App(){
-    const [intervalId,setIntervalId] = useState(null);
-    const [historicalData,setHistoricalData] = useState([])
-    const [currency, setCurrency] = useState([]);
-    const [userInput,setUserInput] = useState(1);
+const App: React.FunctionComponent = () => {
+    const [intervalId,setIntervalId] = useState <undefined | number> (undefined);
+    const [historicalData,setHistoricalData] = useState <ExchangeData[]> ([])
+    const [currency, setCurrency] = useState <ExchangeData[]> ([]);
+    const [userInput,setUserInput] = useState <number> (1);
     
-    const timeGen = (dateRange=0) => {
-        let today = new Date();
+    const timeGen = (dateRange:number=0): [string,string] => {
+        let today: Date = new Date();
         today.setDate(today.getDate() - dateRange);
         
-        const year = today.getFullYear();
-        const month = today.getMonth()+1 
-        const day = today.getDate() 
-        const dateStamp = year + "-" + month + "-" + day
+        const year: number = today.getFullYear();
+        const month: number = today.getMonth()+1 
+        const day: number = today.getDate() 
+        const dateStamp: string = year + "-" + month + "-" + day
 
-        const currentTime = today.getHours() + ":"  
+        const currentTime: string = today.getHours() + ":"  
         + today.getMinutes() + ":" 
         + today.getSeconds() + " ET";
         return [currentTime,dateStamp];
@@ -122,7 +124,7 @@ export default function App(){
         }
         asyncHelper()
           
-        const id = setInterval(async () => {
+        const id = window.setInterval(async () => {
             console.log('updating currency data every 6 seconds');
             const conversionData = await parseConverterAPI()
              conversionData['timeStamp'] = timeGen()[0];
@@ -150,3 +152,5 @@ export default function App(){
         </>
     )
 }
+
+export default App
