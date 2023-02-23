@@ -4,6 +4,7 @@ interface ExchangeData{
   base_currency_name: string,
   amount: number,
   updated_date: string,
+  timeStamp?: string,
   rates: {
       BRL: {
           currency_name: string,
@@ -22,5 +23,14 @@ interface CurrencyGraphProps {
   timeGen: (dateRange?: number) => [string, string]
 }
 
+interface CurrencyTableProps {
+  currency: ExchangeData[]
+}
 
-export {ExchangeData, CurrencyGraphProps}
+interface UserFormProps {
+  setUserInput: React.Dispatch<React.SetStateAction<number>>
+  userInput: number
+  handleSubmit: (e: React.SyntheticEvent) => Promise<void>
+}
+
+export {ExchangeData, CurrencyGraphProps, CurrencyTableProps, UserFormProps}

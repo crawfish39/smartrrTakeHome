@@ -1,15 +1,16 @@
-import React, {forwardRef} from 'react';
+import * as React from 'react';
+import {forwardRef} from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
-import CurrencyGraph from "../client/components/CurrencyGraph.js";
-import UserForm from '../client/components/UserForm.js';
+import CurrencyGraph from "../client/components/CurrencyGraph";
+import UserForm from '../client/components/UserForm';
 
 jest.mock('react-chartjs-2', () => (
   { 
     Line: () => null 
   }))
 
-jest.mock('../client/components/UserForm.js');
+jest.mock('../client/components/UserForm');
 
 describe('CurrencyGraph', () => {
   

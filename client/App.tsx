@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { parseConverterAPI } from './api/converter.js'
+import { parseConverterAPI } from './api/converter'
 import CurrencyGraph from "./components/CurrencyGraph";
-import CurrencyTable from "./components/CurrencyTable.js";
+import CurrencyTable from "./components/CurrencyTable";
 import { ExchangeData } from '../@types/types'
 
 // const testData = [

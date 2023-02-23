@@ -2,8 +2,8 @@ import * as React from "react";
 // import 'chart.js/auto';
 import {Chart,CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js'
 import { Line } from 'react-chartjs-2';
-import { UserForm } from "./UserForm.js";
-import { parseHistoricalAPI } from '../api/historical.js'
+import { UserForm } from "./UserForm";
+import { parseHistoricalAPI } from '../api/historical'
 import { ExchangeData,CurrencyGraphProps } from '../../@types/types'
 
 Chart.register(CategoryScale,LinearScale,PointElement,LineElement);
@@ -20,7 +20,7 @@ const CurrencyGraph = ({historicalData,setHistoricalData,setUserInput,userInput,
     return historicalDates(dateRange - 1,dates)
   }
 
-  const handleSubmit = async (e:React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+  const handleSubmit = async (e:React.SyntheticEvent): Promise<void> => {
     e.preventDefault();
 
     const dates = historicalDates(userInput)
@@ -29,7 +29,7 @@ const CurrencyGraph = ({historicalData,setHistoricalData,setUserInput,userInput,
     dates.forEach( el => {
         promises.push(parseHistoricalAPI(el))
       });
-      console.log(promises)
+      
       try{
         const result: ExchangeData[] = await Promise.all(promises)
         setHistoricalData(result)
@@ -53,10 +53,10 @@ const CurrencyGraph = ({historicalData,setHistoricalData,setUserInput,userInput,
     labels: dates,
     datasets: [
       {
-        id: 1,
+        type: 'line',
         label: 'BRL to 1 USD',
-        borderColor: `rgb(53,162,235)`,
-        backgroundColor: `rgba(53,162,235,.5)`,
+        backgroundColor: 'black',
+        borderColor: 'blue',
         data: rates,
       },
     ],

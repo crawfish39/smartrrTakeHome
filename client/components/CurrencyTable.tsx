@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Table } from '@mui/material';
 import {TableBody} from '@mui/material';
 import {TableCell} from '@mui/material';
@@ -6,8 +6,9 @@ import {TableContainer} from '@mui/material';
 import {TableHead} from '@mui/material';
 import {TableRow} from '@mui/material';
 import {Paper} from '@mui/material';
+import { CurrencyTableProps } from "../../@types/types";
 
-export default function CurrencyTable ({currency}){
+export default function CurrencyTable ({currency}: CurrencyTableProps){
   return(
     <>
       <TableContainer component={Paper}>

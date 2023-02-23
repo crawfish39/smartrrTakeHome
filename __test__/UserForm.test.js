@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import {fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import UserForm from '../client/components/UserForm.js'
+import UserForm from '../client/components/UserForm'
 
 describe('UserForm', () => {
   
@@ -32,7 +32,7 @@ describe('UserForm', () => {
       fireEvent.change(daysInput,{ target: { value: 3 } });
       fireEvent.submit(button);
       expect(props.handleSubmit).toHaveBeenCalled();
-      expect(props.setUserInput).toHaveBeenCalledWith("3")
+      expect(props.setUserInput).toHaveBeenCalledWith(3)
     })
 
     it('should restore the input back to the origin userInput state after clicking submit', () => {
@@ -42,7 +42,7 @@ describe('UserForm', () => {
       fireEvent.change(daysInput,{ target: { value: 3 } });
       fireEvent.submit(button);
       expect(props.handleSubmit).toHaveBeenCalled();
-      expect(props.setUserInput).toHaveBeenCalledWith("3")
+      expect(props.setUserInput).toHaveBeenCalledWith(3)
       expect(daysInput.value).toBe('2')
     })
   })

@@ -1,5 +1,5 @@
 
-const parseHistoricalAPI = async (date) => { // date format: 2020-01-20
+const parseHistoricalAPI = async (date: string) => { // date format: 2020-01-20
   const url = `https://currency-converter5.p.rapidapi.com/currency/historical/${date}?from=USD&amount=1&format=json&to=BRL`;  
   
   const options = {

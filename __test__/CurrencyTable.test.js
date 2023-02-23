@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { getAllByLabelText, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import CurrencyTable from "../client/components/CurrencyTable.js";
+import CurrencyTable from "../client/components/CurrencyTable";
 
 describe('CurrencyTable unit tests', () => {
   
