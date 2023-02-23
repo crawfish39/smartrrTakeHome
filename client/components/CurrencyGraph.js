@@ -18,20 +18,20 @@ export default function CurrencyGraph ({historicalData,setHistoricalData,setUser
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const cleanupHistoricalData = () => new Promise(resolve => (
-      setHistoricalData([]),resolve()))
-    await cleanupHistoricalData()
-
     const dates = historicalDates(userInput)
 
+    let promises = [];
     dates.forEach(async el => {
-        const retroData = await parseHistoricalAPI(el);
-        const waitSetState = () => new Promise(resolve => (
-          setHistoricalData((historicalData) => [...historicalData,retroData])
-        ))
-        await waitSetState();
+        promises.push(parseHistoricalAPI(el));
       });
     setUserInput(1);
+
+    try{
+      const result = await Promise.all(promises);
+      setHistoricalData(result)
+    } catch(err){
+      console.log(`Error fetching new historical data: ${err}`)
+    }
   }
 
   return(
